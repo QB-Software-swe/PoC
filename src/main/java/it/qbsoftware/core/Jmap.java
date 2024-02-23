@@ -156,72 +156,72 @@ public class Jmap {
             final ListMultimap<String, Response.Invocation> previousResponses) {
         return switch (methodCall) {
             case EchoMethodCall echoCall -> {
-                logger.debug("Executing method call Echo");
+                logger.info("Executing method call Echo");
                 yield execute(echoCall, previousResponses);
             }
 
             case GetIdentityMethodCall getIdentityMethodCall -> {
-                logger.debug("Executing method call Identity/Get");
+                logger.info("Executing method call Identity/Get");
                 yield execute(getIdentityMethodCall, previousResponses);
             }
 
             case GetMailboxMethodCall getMailboxMethodCall -> {
-                logger.debug("Executing method call Mailbox/Get");
+                logger.info("Executing method call Mailbox/Get");
                 yield execute(getMailboxMethodCall, previousResponses);
             }
 
             case ChangesMailboxMethodCall changesMailboxMethodCall -> {
-                logger.debug("Executing method call Mailbox/Changes");
+                logger.info("Executing method call Mailbox/Changes");
                 yield execute(changesMailboxMethodCall, previousResponses);
             }
 
             case QueryChangesEmailMethodCall queryChangesEmailMethodCall -> {
-                logger.debug("Executing method call Email/QueryChanges");
+                logger.info("Executing method call Email/QueryChanges");
                 yield execute(queryChangesEmailMethodCall, previousResponses);
             }
 
             case QueryMailboxMethodCall queryMailboxMethodCall -> {
-                logger.debug("Executing method call Mailbox/Query");
+                logger.info("Executing method call Mailbox/Query");
                 yield execute(queryMailboxMethodCall, previousResponses);
             }
 
             case GetThreadMethodCall getThreadMethodCall -> {
-                logger.debug("Executing method call Thread/Get");
+                logger.info("Executing method call Thread/Get");
                 yield execute(getThreadMethodCall, previousResponses);
             }
 
             case GetEmailMethodCall getEmailMethodCall -> {
-                logger.debug("Executing method call Email/Get");
+                logger.info("Executing method call Email/Get");
                 yield execute(getEmailMethodCall, previousResponses);
             }
 
             case ChangesEmailMethodCall changesEmailMethodCall -> {
-                logger.debug("Executing method call Email/Changes");
+                logger.info("Executing method call Email/Changes");
                 yield execute(changesEmailMethodCall, previousResponses);
             }
 
             case QueryEmailMethodCall queryEmailMethodCall -> {
-                logger.debug("Executing method call Email/Query");
+                logger.info("Executing method call Email/Query");
                 yield execute(queryEmailMethodCall, previousResponses);
             }
 
             case ChangesThreadMethodCall changesThreadMethodCall -> {
-                logger.debug("Executing method call Thread/Changes");
+                logger.info("Executing method call Thread/Changes");
                 yield execute(changesThreadMethodCall, previousResponses);
             }
 
             case SetEmailMethodCall setEmailMethodCall -> {
-                logger.debug("Executing method call Email/Set");
+                logger.info("Executing method call Email/Set");
                 yield execute(setEmailMethodCall, previousResponses);
             }
 
             case SetMailboxMethodCall setMailboxMethodCall -> {
-                logger.debug("Executing method call Mailbox/Set");
+                logger.info("Executing method call Mailbox/Set");
                 yield execute(setMailboxMethodCall, previousResponses);
             }
 
             default -> {
-                logger.debug(
+                logger.info(
                         "The method call '"
                                 + methodCall.getClass()
                                 + "' is not recognized/implemented from server");
