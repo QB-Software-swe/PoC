@@ -56,7 +56,7 @@ public class GenPocData {
                         Identity.builder()
                                 .id("1")
                                 .email("example@examplemail.it")
-                                .name("Identità d'esempio")
+                                .name("Identity example")
                                 .build());
     }
 
@@ -64,9 +64,9 @@ public class GenPocData {
         MailboxInfo[] mailboxes =
                 new MailboxInfo[] {
                     new MailboxInfo("0", "Inbox", Role.INBOX),
-                    new MailboxInfo("1", "Importanti", Role.IMPORTANT),
-                    new MailboxInfo("2", "Inviate", Role.SENT),
-                    new MailboxInfo("3", "Archiviate", Role.ARCHIVE)
+                    new MailboxInfo("1", "Important", Role.IMPORTANT),
+                    new MailboxInfo("2", "Sent", Role.SENT),
+                    new MailboxInfo("3", "Archived", Role.ARCHIVE)
                 };
 
         MailboxInfoDao mailboxInfoDao = new MailboxInfoImp();
@@ -98,18 +98,18 @@ public class GenPocData {
                             .from(
                                     EmailAddress.builder()
                                             .email("example@mail.org")
-                                            .name("Nome del mittente")
+                                            .name("Sender's name")
                                             .build())
-                            .subject("Esempio oggetto dell'e-mail")
-                            .preview("Una breve preview dell'e-mail")
+                            .subject("Email object example")
+                            .preview("Short preview of an e-mail")
                             .bodyStructure(
                                     EmailBodyPart.builder().partId("0").type("text/plain").build())
                             .bodyValue(
                                     "0",
                                     EmailBodyValue.builder()
                                             .value(
-                                                    "Ciao, questo è un esempio di contenuto (body)"
-                                                            + " di un e-mail.")
+                                                    "Hello, this is an example of a content (body)"
+                                                            + " of an e-mail.")
                                             .build())
                             .textBody(
                                     EmailBodyPart.builder().partId("0").type("text/plain").build())
@@ -131,19 +131,19 @@ public class GenPocData {
                                             .email("profX@uniX.org")
                                             .name("Prof X")
                                             .build())
-                            .subject("Candidatura per la revisione RTB")
-                            .preview("Candidatura RTB")
+                            .subject("Application for RTB revision")
+                            .preview("RTB application")
                             .bodyStructure(
                                     EmailBodyPart.builder().partId("0").type("text/plain").build())
                             .bodyValue(
                                     "0",
                                     EmailBodyValue.builder()
                                             .value(
-                                                    "Gentile prof. X,\n"
-                                                        + "con la presente il gruppo QB Software"
-                                                        + " intende prenotarsi per la revisione"
-                                                        + " RTB.\n\n"
-                                                        + "Distinti saluti, QB Software.")
+                                                    "Dear prof. X,\n"
+                                                        + "with the present, the QB Software Team,"
+                                                        + " would like to book for the RTB"
+                                                        + " review\n\n"
+                                                        + "Best regards, QB Software.")
                                             .build())
                             .textBody(
                                     EmailBodyPart.builder().partId("0").type("text/plain").build())
@@ -165,19 +165,19 @@ public class GenPocData {
                                             .email("team@qbsoftware.org")
                                             .name("QB Software Team")
                                             .build())
-                            .subject("Candidatura per la revisione RTB")
-                            .preview("Candidatura RTB")
+                            .subject("Application for RTB review")
+                            .preview("RTB application")
                             .bodyStructure(
                                     EmailBodyPart.builder().partId("0").type("text/plain").build())
                             .bodyValue(
                                     "0",
                                     EmailBodyValue.builder()
                                             .value(
-                                                    "Gentile gruppo QB Software, \n "
-                                                            + "gli orari sono: \n"
+                                                    "Dear QB Software team, \n "
+                                                            + "the appointment times are: \n"
                                                             + "- x y;\n"
                                                             + "- z k;\n\n"
-                                                            + " Saluti, prof. X.")
+                                                            + "Best regards, prof. X.")
                                             .build())
                             .textBody(
                                     EmailBodyPart.builder().partId("0").type("text/plain").build())
