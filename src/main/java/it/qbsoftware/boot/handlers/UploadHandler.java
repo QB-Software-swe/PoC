@@ -20,7 +20,7 @@ public class UploadHandler extends Handler.Abstract {
             return false;
         }
 
-        logger.info("Richiesta HTTP POST all'endpoint /upload");
+        logger.info("HTTP POST request to the endpoint /upload");
         response.setStatus(404); // Not implemented
         Content.Sink.write(response, true, "", callback);
         return true;

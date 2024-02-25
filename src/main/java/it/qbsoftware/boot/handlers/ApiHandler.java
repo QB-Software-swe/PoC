@@ -23,7 +23,7 @@ public class ApiHandler extends Handler.Abstract {
             return false;
         }
 
-        logger.info("Richiesta HTTP POST all'endpoint /api");
+        logger.info("HTTP POST request to the endpoint /api");
         String requestPayload = Content.Source.asString(request);
         response.getHeaders().put(HttpHeader.CONTENT_TYPE, "application/json; charset=UTF-8");
 

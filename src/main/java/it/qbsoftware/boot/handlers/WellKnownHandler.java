@@ -23,7 +23,7 @@ public class WellKnownHandler extends Handler.Abstract {
             return false;
         }
 
-        logger.info("Richiesta HTTP GET all'endpoint /.well-known/jmap");
+        logger.info("HTTP GET request to the endpoint /.well-known/jmap");
         response.getHeaders().put(HttpHeader.CONTENT_TYPE, "application/json; charset=UTF-8");
 
         RequestResponse jmapResponse =
