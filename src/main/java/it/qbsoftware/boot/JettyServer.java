@@ -1,25 +1,30 @@
 package it.qbsoftware.boot;
 
+import com.google.inject.Inject;
+import it.qbsoftware.boot.handlers.ApiHandler;
+import it.qbsoftware.boot.handlers.DownloadHandler;
+import it.qbsoftware.boot.handlers.UploadHandler;
+import it.qbsoftware.boot.handlers.WellKnownHandler;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
 import org.eclipse.jetty.server.handler.ContextHandler;
 import org.eclipse.jetty.server.handler.ContextHandlerCollection;
 import org.eclipse.jetty.util.thread.QueuedThreadPool;
 
-import it.qbsoftware.boot.handlers.ApiHandler;
-import it.qbsoftware.boot.handlers.DownloadHandler;
-import it.qbsoftware.boot.handlers.UploadHandler;
-import it.qbsoftware.boot.handlers.WellKnownHandler;
-
-/**
- * JMAPServer
- */
 public class JettyServer {
-    public static void main(String[] args) {
+
+    private Server server;
+
+    @Inject
+    public JettyServer(
+            WellKnownHandler wellKnownHandler,
+            ApiHandler apiHandler,
+            UploadHandler uploadHandler,
+            DownloadHandler downloadHandler) {
         QueuedThreadPool queuedThreadPool = new QueuedThreadPool();
         queuedThreadPool.setName("JMAPServer");
 
-        Server server = new Server(queuedThreadPool);
+        server = new Server(queuedThreadPool);
 
         ServerConnector serverConnector = new ServerConnector(server);
         serverConnector.setPort(9999);
@@ -27,24 +32,15 @@ public class JettyServer {
 
         // Server end points
         ContextHandlerCollection contextHandlerCollection = new ContextHandlerCollection();
-        contextHandlerCollection.addHandler(new ContextHandler(
-            new WellKnownHandler(),
-            WellKnownHandler.HANDLER_ENDPOINT_NAME
-        ));
-        contextHandlerCollection.addHandler(new ContextHandler(
-            new ApiHandler(),
-            ApiHandler.HANDLER_ENDPOINT_NAME
-        ));
-        contextHandlerCollection.addHandler(new ContextHandler(
-            new UploadHandler(),
-            UploadHandler.HANDLER_ENDPOINT_NAME
-        ));
-        contextHandlerCollection.addHandler(new ContextHandler(
-            new DownloadHandler(),
-            DownloadHandler.HANDLER_ENDPOINT_NAME
-        ));
+        contextHandlerCollection.addHandler(
+                new ContextHandler(wellKnownHandler, WellKnownHandler.HANDLER_CONTEXT_PATH));
+        contextHandlerCollection.addHandler(new ContextHandler(apiHandler));
+        contextHandlerCollection.addHandler(new ContextHandler(uploadHandler));
+        contextHandlerCollection.addHandler(new ContextHandler(downloadHandler));
         server.setHandler(contextHandlerCollection);
+    }
 
+    public void start() {
         try {
             server.start();
         } catch (Exception exception) {
