@@ -96,12 +96,13 @@ import rs.ltt.jmap.mock.server.util.FuzzyRoleParser;
 public class Jmap {
     final Logger logger = LoggerFactory.getLogger(Jmap.class);
     static final Gson GSON;
-    final LinkedHashMap<String, Update> updates = new LinkedHashMap<>();
+    final LinkedHashMap<String, Update> updates;
     static MongoConnection db;
 
     @Inject
-    public Jmap(MongoConnection db) {
+    public Jmap(MongoConnection db, LinkedHashMap<String, Update> updates) {
         Jmap.db = db;
+        Jmap.updates = updates;
     }
 
     static {
