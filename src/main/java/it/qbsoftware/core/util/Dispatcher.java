@@ -98,21 +98,27 @@ public class Dispatcher {
             final ListMultimap<String, Response.Invocation> previousResponses) {
         return switch (methodCall) {
             case EchoMethodCall call -> {
+                logger.debug("Executing Echo method call");
                 yield echoM.echo(call, previousResponses);
             }
             case GetIdentityMethodCall call -> {
+                logger.debug("Executing Identity/Get method call");
                 yield identityM.get(call, previousResponses);
             }
             case GetEmailMethodCall call -> {
+                logger.debug("Executing Email/Get method call");
                 yield emailM.get(call, previousResponses);
             }
             case ChangesEmailMethodCall call -> {
+                logger.debug("Executing Email/Changes method call");
                 yield emailM.changes(call, previousResponses);
             }
             case QueryEmailMethodCall call -> {
+                logger.debug("Executing Email/Query method call");
                 yield emailM.query(call, previousResponses);
             }
             case SetEmailMethodCall call -> {
+                logger.debug("Executing Email/Set method call");
                 yield emailM.set(call, previousResponses);
             }
                 /*
@@ -124,24 +130,31 @@ public class Dispatcher {
                 }
                 */
             case GetMailboxMethodCall call -> {
+                logger.debug("Executing Mailbox/Get method call");
                 yield mailboxM.get(call, previousResponses);
             }
             case ChangesMailboxMethodCall call -> {
+                logger.debug("Executing Mailbox/Changes method call");
                 yield mailboxM.changes(call, previousResponses);
             }
             case SetMailboxMethodCall call -> {
+                logger.debug("Executing Mailbox/Set method call");
                 yield mailboxM.set(call, previousResponses);
             }
             case GetThreadMethodCall call -> {
+                logger.debug("Executing Thread/Get method call");
                 yield threadM.get(call, previousResponses);
             }
             case ChangesThreadMethodCall call -> {
+                logger.debug("Executing Thread/Changes method call");
                 yield threadM.changes(call, previousResponses);
             }
             case QueryChangesEmailMethodCall call -> {
+                logger.debug("Executing Email/QueryChanges method call");
                 yield emailM.queryChanges(call, previousResponses);
             }
             default -> {
+                logger.debug("The method '" + methodCall.getClass() + "' is not supported");
                 yield new MethodResponse[] {new UnknownMethodMethodErrorResponse()};
             }
         };
