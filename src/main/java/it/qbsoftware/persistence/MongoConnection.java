@@ -23,9 +23,13 @@ public class MongoConnection {
         return mongoDatabase;
     }
 
-    public String getState(){
-        return mongoDatabase.getCollection("Account").find(Filters.eq("_id","0")).first().getString("state");
-    } 
+    public String getState() {
+        return mongoDatabase
+                .getCollection("Account")
+                .find(Filters.eq("_id", "0"))
+                .first()
+                .getString("state");
+    }
 
     public void increaseState() {
         mongoDatabase
